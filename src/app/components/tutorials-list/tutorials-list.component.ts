@@ -25,7 +25,7 @@ export class TutorialsListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+
     this.commonSvc.getListWithKey('tutorials')
       .subscribe(res => {
         console.log(res);
@@ -55,6 +55,10 @@ export class TutorialsListComponent implements OnInit {
 
   }
 
+  deleteBtn(){
+    this.commonSvc.deleteData
+    (`tutorials` )
+  }
 
 
 }

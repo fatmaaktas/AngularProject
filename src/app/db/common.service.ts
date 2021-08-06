@@ -8,6 +8,9 @@ import firebase from 'firebase/app';
   providedIn: 'root'
 })
 export class CommonService {
+  deleteData(arg0: string, arg1: string) {
+    throw new Error('Method not implemented.');
+  }
   list(arg0: string, arg1: (ref: any) => any) {
     throw new Error('Method not implemented.');
   }

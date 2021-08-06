@@ -1,40 +1,41 @@
-
-
 <form [formGroup]="form" (ngSubmit)="submit()">
-   
-    <div class="container">
-        <div class="container-m">
-    <div class="row mb-3">
-      <label class="col-sm-2 col-form-label">İsim:</label>
-      <div class="col-sm-30" >
-        <input type="text" class="form-control" published="name" formControlName="name">
+
+  <div class="container">
+    <div class="container-m">
+      <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">İsim:</label>
+        <div class="col-sm-30">
+          <input type="text" class="form-control" published="name" formControlName="name">
+        </div>
       </div>
-    </div>
-    <div class="row mb-3">
-      <label class="col-sm-2 col-form-label">Soyisim:</label>
-      <div class="col-sm-30">
-        <input type="text" class="form-control" published="surName" formControlName="surName">
+      <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Soyisim:</label>
+        <div class="col-sm-30">
+          <input type="text" class="form-control" published="surName" formControlName="surName">
+        </div>
       </div>
-    </div>
-    <div class="col-12">
+      <div class="col-12">
         <button type="submit" class="btn btn-primary">Ekle</button>
       </div>
-      
+
     </div>
 
-</div>
+  </div>
 </form>
 <div class="col-12">
-  <button type="submit"  class="btn btn-primary" (click)="hideBtn()">Kişileri Listele</button>
-  
+  <button type="submit" class="btn btn-primary" (click)="hideBtn()">Kişileri Listele</button>
+
   <div *ngIf="hidden">
-  <div *ngFor='let t of tutorials' class="md-12" flex="100" alignItems="center">
-    <p>{{t.name +' '+ t.surName}}</p>
+    <div *ngFor='let t of tutorials' class="row">
+      <div  class="col-md-8" flex="100" alignItems="center">
+        <p>{{t.name +' '+ t.surName}}</p>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary" (click)="deleteRecord(t.key)">Sil</button>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary" (click)="updateRecord(t.key)">Duzenle</button>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-<div class="col-12">
-  <button type="submit" class="btn btn-primary" (click)="deleteBtn()">Sil</button>
-</div>
-</div>
-
-

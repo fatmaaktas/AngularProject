@@ -29,9 +29,7 @@ export class TutorialsListComponent implements OnInit {
     this.commonSvc.getListWithKey('tutorials')
       .subscribe(res => {
         console.log(res);
-
         this.tutorials = res;
-
       })
   }
 
@@ -55,10 +53,15 @@ export class TutorialsListComponent implements OnInit {
 
   }
 
-  deleteBtn(){
-    this.tutorials.delete()
-  
-   
+  deleteRecord(key:any){
+    this.commonSvc.removeData(`tutorials/${key}`)
+  }
+
+  updateRecord(key:any){
+    // this.commonSvc.updateData('tutorials',`${key}`,{
+    //   name:'Ecem',
+    //   surName:'Gundogdu'
+    // })
   }
   
 

@@ -56,9 +56,10 @@ export class TutorialsListComponent implements OnInit {
   }
 
   deleteBtn(){
-    this.commonSvc.deleteData
-    (`tutorials` )
+    this.tutorials.delete()
+  
+   
   }
-
+  
 
 }

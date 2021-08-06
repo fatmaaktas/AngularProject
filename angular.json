@@ -20,6 +20,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "rxjs/add/operator/first",
+              "rxjs/add/operator/map",
+              "rxjs/add/operator/filter"
+            ],
             "outputPath": "dist/fawork",
             "index": "src/index.html",
             "main": "src/main.ts",

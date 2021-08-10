@@ -27,11 +27,11 @@
 </form>
 <div class="col-12">
   <button type="submit" class="btn btn-primary" (click)="hideBtn()">Kişileri Listele</button>
-
-  <div *ngIf="hidden">
-    <div *ngFor='let t of tutorials' class="row">
+  
+  <div >
+    <div *ngFor="let t of tutorials | orderBy:'name':true" class="row">
       <div  class="col-md-8" flex="100" alignItems="center">
-        <p>{{t.name +' '+ t.surName}}</p>
+        <p>{{t.name+' '+t.surName}}</p>
       </div>
       <div class="col-md-2">
         <button type="submit" class="btn btn-primary" (click)="deleteRecord(t.key)">Sil</button>

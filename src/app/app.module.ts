@@ -10,6 +10,7 @@ import { TutorialDetailsComponent } from './components/tutorial-details/tutorial
 import { TutorialsListComponent } from './components/tutorials-list/tutorials-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrderByPipe } from './pipes/order-pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddTutorialComponent,
     TutorialDetailsComponent,
     TutorialsListComponent,
+    OrderByPipe
     
   ],
   imports: [
@@ -28,6 +30,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule, 
     
+  ],
+
+  exports:[
+    OrderByPipe
   ],
   providers: [],
   bootstrap: [AppComponent]

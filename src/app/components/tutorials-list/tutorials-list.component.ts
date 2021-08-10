@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Validators } from '@angular/forms';
 import { CommonService } from 'src/app/db/common.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { errorObject } from 'rxjs/internal-compatibility';
-
 
 @Component({
   selector: 'app-tutorials-list',
@@ -11,11 +9,11 @@ import { errorObject } from 'rxjs/internal-compatibility';
   styleUrls: []
 })
 export class TutorialsListComponent implements OnInit {
+
   tutorials: any;
   form!: FormGroup
   hidden: boolean = false;
  
-  
 
   constructor(
     private commonSvc: CommonService,
@@ -31,7 +29,6 @@ export class TutorialsListComponent implements OnInit {
    
     this.commonSvc.getListWithKey('tutorials')
       .subscribe(res => {
-        console.log(res);
         this.tutorials = res;
       })
   }
@@ -58,6 +55,7 @@ export class TutorialsListComponent implements OnInit {
 
   hideBtn() {
     this.hidden = !this.hidden
+   
 
   }
 
@@ -70,8 +68,9 @@ export class TutorialsListComponent implements OnInit {
       name:'',
       surName:''
      })
-  }
+    }
  
   
 }
+
   

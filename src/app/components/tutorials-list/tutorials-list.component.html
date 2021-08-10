@@ -5,13 +5,16 @@
       <div class="row mb-3">
         <label class="col-sm-2 col-form-label">İsim:</label>
         <div class="col-sm-30">
-          <input type="text" class="form-control" published="name" formControlName="name">
+          <input type="text" required class="form-control" published="name" formControlName="name">
+          <div *ngIf= "form.controls.name.errors?.required"><span>Lütfen İsim giriniz</span></div>
+                
         </div>
       </div>
       <div class="row mb-3">
         <label class="col-sm-2 col-form-label">Soyisim:</label>
         <div class="col-sm-30">
-          <input type="text" class="form-control" published="surName" formControlName="surName">
+          <input type="text" required class="form-control" published="surName" formControlName="surName">
+       <div *ngIf= "form.controls.surName.errors?.required"><span>Lütfen Soyisim giriniz</span></div>
         </div>
       </div>
       <div class="col-12">
@@ -33,9 +36,10 @@
       <div class="col-md-2">
         <button type="submit" class="btn btn-primary" (click)="deleteRecord(t.key)">Sil</button>
       </div>
-      <div class="col-md-2">
+  
         <button type="submit" class="btn btn-primary" (click)="updateRecord(t.key)">Duzenle</button>
-      </div>
+        
+     
     </div>
   </div>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { CommonService } from 'src/app/db/common.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { errorObject } from 'rxjs/internal-compatibility';
 
 
 @Component({
@@ -13,6 +14,8 @@ export class TutorialsListComponent implements OnInit {
   tutorials: any;
   form!: FormGroup
   hidden: boolean = false;
+ 
+  
 
   constructor(
     private commonSvc: CommonService,
@@ -25,7 +28,7 @@ export class TutorialsListComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+   
     this.commonSvc.getListWithKey('tutorials')
       .subscribe(res => {
         console.log(res);
@@ -33,8 +36,13 @@ export class TutorialsListComponent implements OnInit {
       })
   }
 
+  letterOnly(event: any) {
+    var charCode = event.keyCode;
+    return (charCode > 31 && (charCode < 48 || charCode > 57))
+  }
   
   submit() {
+
     this.commonSvc.setData
       (`tutorials`,
         `${Date.now().valueOf()}`,
@@ -44,9 +52,9 @@ export class TutorialsListComponent implements OnInit {
         }).then(() => {
           this.form.reset()
         })
-  }
-
-
+        
+      }
+    
 
   hideBtn() {
     this.hidden = !this.hidden
@@ -57,12 +65,13 @@ export class TutorialsListComponent implements OnInit {
     this.commonSvc.removeData(`tutorials/${key}`)
   }
 
-  updateRecord(key:any){
-    // this.commonSvc.updateData('tutorials',`${key}`,{
-    //   name:'Ecem',
-    //   surName:'Gundogdu'
-    // })
+  updateRecord(key: any){
+    this.commonSvc.updateData('tutorials',`${key}`,{
+      name:'',
+      surName:''
+     })
   }
+ 
   
-
 }
+  

@@ -26,7 +26,7 @@
   <div class="row mt-3">
 <div class="col-12">
   <button type="submit" class="btn btn-primary" (click)="hideBtn()">Kişileri Listele</button>
- 
+    <div *ngIf="hidden">
     <div *ngFor="let t of tutorials | orderBy:'name':true" class="row">
       <div  class="col-md-8" flex="100" alignItems="center">
         <p>{{t.name+' '+t.surName}}</p>

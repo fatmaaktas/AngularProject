@@ -1,43 +1,45 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
-  
-  <div class="container">
-      <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">İsim:</label>
-        <div class="col-sm-30">
-          <input type="text" required class="form-control" published="name" formControlName="name">
-          <div *ngIf= "form.controls.name.errors?.required"><span>Lütfen İsim giriniz</span></div>
-                
-        </div>
+
+  <div class="container mt-3">
+
+    <h2>Kişi Oluşturma ve Listeleme</h2>
+    <div class="row mt-5">
+
+      <label class="col-sm-2 col-form-label">İsim:</label>
+      <div class="col-sm-30">
+        <input type="text" required class="form-control" published="name" formControlName="name">
+        <div *ngIf="form.controls.name.errors?.required"><span>Lütfen İsim giriniz</span></div>
+
       </div>
-      <div class="row mb-3">
-        <label class="col-sm-2 col-form-label">Soyisim:</label>
-        <div class="col-sm-30">
-          <input type="text" required class="form-control" published="surName" formControlName="surName">
-       <div *ngIf= "form.controls.surName.errors?.required"><span>Lütfen Soyisim giriniz</span></div>
-        </div>
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Ekle</button>
-      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Soyisim:</label>
+      <div class="col-sm-30">
+        <input type="text" required class="form-control" published="surName" formControlName="surName">
+        <div *ngIf="form.controls.surName.errors?.required"><span>Lütfen Soyisim giriniz</span></div>
+    </div>
+    <div class="col-6">
+      <button type="submit" class="btn btn-primary">Ekle</button>
+    </div>
   </div>
-</form>
 
 <div class="container">
   <div class="row mt-3">
-<div class="col-12">
-  <button type="submit" class="btn btn-primary" (click)="hideBtn()">Kişileri Listele</button>
-    <div *ngIf="hidden">
-    <div *ngFor="let t of tutorials | orderBy:'name':true" class="row">
-      <div  class="col-md-8" flex="100" alignItems="center">
-        <p>{{t.name+' '+t.surName}}</p>
+    <div class="col-6">
+      <button type="submit" class="btn btn-primary" (click)="hideBtn()">Kişileri Listele</button>
+      <div *ngIf="hidden">
+        <div *ngFor="let t of tutorials | orderBy:'name':true  |  isimFilter: filterText" class="row">
+          <div class="col-md-8" flex="100" alignItems="center">
+            <p>{{t.name+' '+t.surName}}</p>
+          </div>
+          <div class="col-md-2">
+            <button type="submit" class="btn btn-primary" (click)="deleteRecord(t.key)">Sil</button>
+          </div>
+
+          <button type="submit" class="btn btn-primary" (click)="setRecord(t.name, t.surName, t.key)">Duzenle</button>
+
+        </div>
       </div>
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-primary" (click)="deleteRecord(t.key)">Sil</button>
-      </div>
-  
-        <button type="submit" class="btn btn-primary" (click)="updateRecord(t.key)">Duzenle</button>
-        
     </div>
-    </div>
-</div>
+  </div>
 </div>

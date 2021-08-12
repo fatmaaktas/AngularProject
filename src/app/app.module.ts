@@ -11,6 +11,7 @@ import { TutorialsListComponent } from './components/tutorials-list/tutorials-li
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderByPipe } from './pipes/order-pipe';
+import { IsimFilterPipe } from './pipes/isim-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { OrderByPipe } from './pipes/order-pipe';
     AddTutorialComponent,
     TutorialDetailsComponent,
     TutorialsListComponent,
-    OrderByPipe
+    OrderByPipe,
+    IsimFilterPipe
     
   ],
   imports: [

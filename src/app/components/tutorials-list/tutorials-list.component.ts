@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { CommonService } from 'src/app/db/common.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { stringify } from '@angular/compiler/src/util';
+
+
 
 @Component({
   selector: 'app-tutorials-list',
@@ -15,12 +16,17 @@ export class TutorialsListComponent implements OnInit {
   form!: FormGroup
   hidden: boolean = false;
   deger: boolean = true;
-  selectedKey:any;
-
+  selectedKey: any;
+  batch: number = 10
+  lastkey: string = ' '
+  isLoaded: boolean = false
 
   constructor(
     private commonSvc: CommonService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder) {  
+    this.isLoaded = false  
+    this.lastkey = ' '
+    this.getList(this.lastkey)
     this.form = this.fb.group({
       name: ['', Validators.compose([Validators.required])],
       surName: ['', Validators.compose([Validators.required])]
@@ -42,34 +48,36 @@ export class TutorialsListComponent implements OnInit {
   }
 
   submit() {
-    if(this.deger)
-      this.saveRecord()
-    
-    else
-      this.updateRecord()
-    
-    this.deger= !this.deger
-    this.form.reset()
+    if (this.form.valid) {
+      if (this.deger)
+        this.saveRecord()
+
+      else
+        this.updateRecord()
+
+      this.deger = !this.deger
+      this.form.reset()
+    }
   }
 
-  saveRecord(){
+  saveRecord() {
     this.commonSvc.setData
-    (`tutorials`,
-      `${Date.now().valueOf()}`,
-      {
-        name: this.form.value.name,
-        surName: this.form.value.surName
-      })
+      (`tutorials`,
+        `${Date.now().valueOf()}`,
+        {
+          name: this.form.value.name,
+          surName: this.form.value.surName
+        })
   }
 
-  updateRecord(){
+  updateRecord() {
     this.commonSvc.updateData
-    (`tutorials`,
-      `${this.selectedKey}`,
-      {
-        name: this.form.value.name,
-        surName: this.form.value.surName
-      })
+      (`tutorials`,
+        `${this.selectedKey}`,
+        {
+          name: this.form.value.name,
+          surName: this.form.value.surName
+        })
   }
 
 
@@ -81,16 +89,28 @@ export class TutorialsListComponent implements OnInit {
     this.commonSvc.removeData(`tutorials/${key}`)
   }
 
-  setRecord(name: any, surName: any, key:any) {
-    this.deger= !this.deger
+  setRecord(name: any, surName: any, key: any) {
+    this.deger = !this.deger
     this.selectedKey = key
     this.form.setValue({
       name: name,
       surName: surName,
-      })
-    
+    })
+
   }
 
+  getList(lastkey?: string) {
+    this.commonSvc.getListWithKey(this.tutorials, this.batch + 1, lastkey)
+      .subscribe(res => {
+        this.tutorials = this.tutorials.slice(0, -1).concat(res)
+        this.lastkey = lastkey == res.slice(-1)[0].key ? 'finish' : res.slice(-1)[0].key
+        this.isLoaded = true
+      })
+  }
+  onScroll() {
+    if (this.lastkey != 'finish') {
+      this.getList(this.lastkey)
+    }
 
-}
+  }
 

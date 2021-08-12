@@ -12,6 +12,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderByPipe } from './pipes/order-pipe';
 import { IsimFilterPipe } from './pipes/isim-filter.pipe';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,7 @@ import { IsimFilterPipe } from './pipes/isim-filter.pipe';
     TutorialDetailsComponent,
     TutorialsListComponent,
     OrderByPipe,
-    IsimFilterPipe
+    IsimFilterPipe,
     
   ],
   imports: [
@@ -31,13 +34,16 @@ import { IsimFilterPipe } from './pipes/isim-filter.pipe';
     NgbModule,
     ReactiveFormsModule,
     FormsModule, 
-    
+    InfiniteScrollModule,
   ],
 
   exports:[
-    OrderByPipe
+    OrderByPipe,
+    IsimFilterPipe,
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+platformBrowserDynamic().bootstrapModule(AppModule);

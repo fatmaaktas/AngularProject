@@ -12,13 +12,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class TutorialsListComponent implements OnInit {
 
-  tutorials: any;
+  tutorials: any=[];
   form!: FormGroup
   hidden: boolean = false;
   deger: boolean = true;
   query: any;
   selectedKey: any;
-  batch: number = 3
+  batch: number = 10
   lastkey: string = ' '
   isLoaded: boolean = false
   
@@ -37,11 +37,6 @@ export class TutorialsListComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-    this.commonSvc.getListWithKey('tutorials')
-      .subscribe(res => {
-        this.tutorials = res;
-      })
   }
 
   letterOnly(event: any) {
@@ -53,7 +48,6 @@ export class TutorialsListComponent implements OnInit {
     if (this.form.valid) {
       if (this.deger)
         this.saveRecord()
-
       else
         this.updateRecord()
 
@@ -102,14 +96,14 @@ export class TutorialsListComponent implements OnInit {
   }
 
   getListUrl(lastkey?: string) {
-    this.commonSvc.getListUrl(this.tutorials, this.batch + 1, lastkey)
-      .subscribe(res => {
+    this.commonSvc.getListUrl(this.batch + 1, lastkey)
+      .subscribe((res:any) => {        
         this.tutorials = this.tutorials.slice(0, -1).concat(res)
         this.lastkey = lastkey == res.slice(-1)[0].key ? 'finish' : res.slice(-1)[0].key
         this.isLoaded = true
       })
   }
-  onScroll() {
+  onScroll() {    
     if (this.lastkey != 'finish') {
       this.getListUrl(this.lastkey)
     }

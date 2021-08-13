@@ -167,14 +167,15 @@ export class CommonService {
   }
 
   
-  getListUrl(key: any, sindex:any, lastKey:any) {
-    return this.db.list(`tutorials/${key}`, ref =>
+  getListUrl(sindex:any, lastKey:any) {
+    return this.db.list(`tutorials`, ref =>
       ref.orderByKey()
         .startAt(lastKey)
         .limitToFirst(sindex))
       .snapshotChanges().map(changes => {
         return changes.map((c: any) => ({
-          key: c.payload.key
+          key: c.payload.key, ...c.payload.val()
+
         }))
       }).first()
   }

@@ -30,16 +30,11 @@
   <div class="row mt-3">
     <div class="col-6">
       <button type="submit" class="btn btn-primary" (click)="hideBtn()">Kişileri Listele</button>
-      <div *ngIf="hidden">
-        <div class="search-results" 
-        infinite-scroll [infiniteScrollDistance]="2" 
-        [infiniteScrollThrottle]="1000"
-        (scrolled)="onScroll()" 
-        [scrollWindow]="false">
-        </div>
-        <input type="text" class="form-control mb-4" placeholder="Search..." [(ngModel)]="query" >
+        <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()"></div>
 
-        <div *ngFor="let t of tutorials | orderBy:'name':true  | isimFilter: query" class="row">
+      <input type="text" class="form-control mb-4" placeholder="Search..." [(ngModel)]="query">
+      <div >
+        <div *ngFor="let t of tutorials | isimFilter: query" class="row">
           <div class="col-md-8" flex="100" alignItems="center">
             <p>{{t.name+' '+t.surName}}</p>
           </div>

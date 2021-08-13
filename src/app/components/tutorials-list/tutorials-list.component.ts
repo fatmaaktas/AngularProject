@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Query } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { CommonService } from 'src/app/db/common.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -16,17 +16,19 @@ export class TutorialsListComponent implements OnInit {
   form!: FormGroup
   hidden: boolean = false;
   deger: boolean = true;
+  query: any;
   selectedKey: any;
-  batch: number = 10
+  batch: number = 3
   lastkey: string = ' '
   isLoaded: boolean = false
+  
 
   constructor(
     private commonSvc: CommonService,
     private fb: FormBuilder) {  
     this.isLoaded = false  
     this.lastkey = ' '
-    this.getList(this.lastkey)
+    this.getListUrl(this.lastkey)
     this.form = this.fb.group({
       name: ['', Validators.compose([Validators.required])],
       surName: ['', Validators.compose([Validators.required])]
@@ -99,8 +101,8 @@ export class TutorialsListComponent implements OnInit {
 
   }
 
-  getList(lastkey?: string) {
-    this.commonSvc.getListWithKey(this.tutorials, this.batch + 1, lastkey)
+  getListUrl(lastkey?: string) {
+    this.commonSvc.getListUrl(this.tutorials, this.batch + 1, lastkey)
       .subscribe(res => {
         this.tutorials = this.tutorials.slice(0, -1).concat(res)
         this.lastkey = lastkey == res.slice(-1)[0].key ? 'finish' : res.slice(-1)[0].key
@@ -109,8 +111,8 @@ export class TutorialsListComponent implements OnInit {
   }
   onScroll() {
     if (this.lastkey != 'finish') {
-      this.getList(this.lastkey)
+      this.getListUrl(this.lastkey)
     }
 
   }
-
+}

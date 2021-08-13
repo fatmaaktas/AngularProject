@@ -166,6 +166,18 @@ export class CommonService {
       .then(snapshot => snapshot.exists());
   }
 
+  
+  getListUrl(key: any, sindex:any, lastKey:any) {
+    return this.db.list(`tutorials/${key}`, ref =>
+      ref.orderByKey()
+        .startAt(lastKey)
+        .limitToFirst(sindex))
+      .snapshotChanges().map(changes => {
+        return changes.map((c: any) => ({
+          key: c.payload.key
+        }))
+      }).first()
+  }
 
   getCategories(parent:string) {
     return this.db.list(`categories`, ref =>

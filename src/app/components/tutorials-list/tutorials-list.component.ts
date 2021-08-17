@@ -109,5 +109,5 @@ export class TutorialsListComponent implements OnInit {
       this.getListUrl(this.lastkey)
     }
   }
-  
+
 }

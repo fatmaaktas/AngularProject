@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class TutorialsListComponent implements OnInit {
 
-  tutorials: any=[];
+  tutorials: any = [];
   form!: FormGroup
   hidden: boolean = false;
   deger: boolean = true;
@@ -21,12 +21,13 @@ export class TutorialsListComponent implements OnInit {
   batch: number = 10
   lastkey: string = ' '
   isLoaded: boolean = false
-  
+
+
 
   constructor(
     private commonSvc: CommonService,
-    private fb: FormBuilder) {  
-    this.isLoaded = false  
+    private fb: FormBuilder) {
+    this.isLoaded = false
     this.lastkey = ' '
     this.getListUrl(this.lastkey)
     this.form = this.fb.group({
@@ -97,16 +98,16 @@ export class TutorialsListComponent implements OnInit {
 
   getListUrl(lastkey?: string) {
     this.commonSvc.getListUrl(this.batch + 1, lastkey)
-      .subscribe((res:any) => {        
+      .subscribe((res: any) => {
         this.tutorials = this.tutorials.slice(0, -1).concat(res)
         this.lastkey = lastkey == res.slice(-1)[0].key ? 'finish' : res.slice(-1)[0].key
         this.isLoaded = true
       })
   }
-  onScroll() {    
+  onScroll() {
     if (this.lastkey != 'finish') {
       this.getListUrl(this.lastkey)
     }
-
   }
+  
 }

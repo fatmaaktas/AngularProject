@@ -4,8 +4,8 @@ import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.com
 import { TutorialsListComponent } from './components/tutorials-list/tutorials-list.component';
 
 const routes: Routes = [
-  {path:'', component: TutorialsListComponent},
-  {path:'deneme', component:AddTutorialComponent}
+  {path:'', component: TutorialsListComponent}, 
+  {path:'addTutorial', component:AddTutorialComponent}
 ];
 
 @NgModule({

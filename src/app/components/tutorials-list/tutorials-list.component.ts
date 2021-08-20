@@ -2,6 +2,7 @@ import { Component, OnInit, Query } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { CommonService } from 'src/app/db/common.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
@@ -26,6 +27,7 @@ export class TutorialsListComponent implements OnInit {
 
   constructor(
     private commonSvc: CommonService,
+    private router: Router,
     private fb: FormBuilder) {
     this.isLoaded = false
     this.lastkey = ' '
@@ -37,7 +39,12 @@ export class TutorialsListComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+  
+    this.commonSvc.getListWithKey('tutorials').subscribe(res=>{
+      console.log(res);
+      
+    })
   }
 
   letterOnly(event: any) {
@@ -110,4 +117,7 @@ export class TutorialsListComponent implements OnInit {
     }
   }
 
+  yonlendir() {
+    this.router.navigate(['./addTutorial']);
+  }
 }

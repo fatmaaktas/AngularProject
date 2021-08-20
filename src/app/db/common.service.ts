@@ -122,7 +122,7 @@ export class CommonService {
               .key, ...c
                 .payload.val()
           }))
-      })
+      }).first()
   }
 
   /**

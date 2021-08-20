@@ -16,6 +16,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     TutorialsListComponent,
     OrderByPipe,
     IsimFilterPipe,
+    
     
   ],
   imports: [

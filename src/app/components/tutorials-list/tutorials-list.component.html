@@ -31,7 +31,7 @@
     <div class="col-6">
       <button type="submit" class="btn btn-primary" (click)="hideBtn()">Kişileri Listele</button>
       <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()"></div>
-      <div *ngIf="hidden">
+      <!-- <div *ngIf="hidden"></div> -->
         <input type="text" class="form-control mb-4" placeholder="Search..." [(ngModel)]="query">
         <div>
           <div *ngFor="let t of tutorials | isimFilter: query" class="row">
@@ -44,8 +44,8 @@
 
             <button type="submit" class="btn btn-primary" (click)="setRecord(t.name, t.surName, t.key)">Duzenle</button>
           </div>
-        </div>
       </div>
     </div>
   </div>
 </div>
+<button type="submit" class="btn btn-primary" (click)="yonlendir()">Diğer sayfaya yönlendir</button>

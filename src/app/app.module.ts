@@ -14,7 +14,10 @@ import { OrderByPipe } from './pipes/order-pipe';
 import { IsimFilterPipe } from './pipes/isim-filter.pipe';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
+import { HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './components/auth/auth.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { RegisterComponent } from './components/auth/register/register.component';
 
 
 @NgModule({
@@ -25,6 +28,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     TutorialsListComponent,
     OrderByPipe,
     IsimFilterPipe,
+    AuthComponent,
+    RegisterComponent
     
     
   ],
@@ -33,10 +38,12 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     NgbModule,
     ReactiveFormsModule,
     FormsModule, 
     InfiniteScrollModule,
+    HttpClientModule
   ],
 
   exports:[

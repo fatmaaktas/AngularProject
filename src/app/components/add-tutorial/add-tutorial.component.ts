@@ -21,7 +21,7 @@ export class AddTutorialComponent implements OnInit {
   hesapla() {
     this.x = []
 
-    for (let n = 2; n < 100000 ; n++) {
+    for (let n = 2; n < 1000 ; n++) {
       let y: any = n
       let step = 0;
       let flag = true;

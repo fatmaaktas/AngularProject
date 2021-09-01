@@ -5,10 +5,9 @@
                 <div class=mb-5>
                     <div>
                         <div class="col-5 mx-auto">
-                            <h4>Kayıt Ol</h4>
+                            <h4>Üye Ol</h4>
                         </div>
                     </div>
-
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">E-mail</label>
@@ -20,11 +19,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Ad Soyad</label>
-                    <input type="name" required formControlName="name" class="form-control">
+                    <input type="name" required formControlName="name" class="uppercase"(keypress) ="letterOnly($event)" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Telefon</label>
-                    <input type="phone" required formControlName="phone" class="form-control">
+                    <input type="phone" required formControlName="phone" (keypress)="numberOnly($event)" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="address" class="form-label">Adres</label>

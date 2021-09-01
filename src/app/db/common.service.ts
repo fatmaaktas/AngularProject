@@ -122,7 +122,7 @@ export class CommonService {
               .key, ...c
                 .payload.val()
           }))
-      }).first()
+      })
   }
 
   /**
@@ -177,7 +177,7 @@ export class CommonService {
           key: c.payload.key, ...c.payload.val()
 
         }))
-      }).first()
+      })
   }
 
   getCategories(parent:string) {

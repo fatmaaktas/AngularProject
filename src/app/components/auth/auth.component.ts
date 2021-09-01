@@ -11,7 +11,6 @@ import { AuthService } from '../../services/auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  ngForm: any;
   form: any;
   users: any;
   constructor(
@@ -27,7 +26,6 @@ export class AuthComponent implements OnInit {
   }
   initForm() {
     this.form = this.fb.group({
-
       email: ['', Validators.compose([Validators.required])],
       password: ['', Validators.required]
     })
@@ -42,6 +40,10 @@ export class AuthComponent implements OnInit {
       return;
       this.authService.login(this.form.value.email, this.form.value.password).then(() => {
         this.router.navigateByUrl('addTutorial')
+      }, err => {
+        console.log(err);
+      }).then(() => {
+        this.form.reset();
       })
     
     

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonService } from 'src/app/db/common.service';
 import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-register',
@@ -17,8 +18,19 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private commonSvc: CommonService,
+    private element: ElementRef,
     public fb: FormBuilder) {
     this.initForm()
+    
+  }
+
+  numberOnly(event: any): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    return (!(charCode > 31 && (charCode < 48 || charCode > 57))) }
+    
+  letterOnly(event: any) {
+    var charCode = event.keyCode;
+    return (charCode > 31 && (charCode < 48 || charCode > 57))
   }
 
   ngOnInit(): void {
@@ -47,6 +59,10 @@ export class RegisterComponent implements OnInit {
             name: this.form.value.name,
             phone: this.form.value.phone,
             address: this.form.value.address
+          }).then(() => {
+            this.router.navigateByUrl('addTutorial')
+          }).then(() => {
+            this.form.reset();
           })
       })
     

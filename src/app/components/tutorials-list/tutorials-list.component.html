@@ -1,10 +1,9 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
 
   <div class="container mt-3">
-    <a routerLink="/auth" class="col-5 mx-auto">Kayıt Ol</a>
+    <div class="col-6 mx-auto">
     <h2>Kişi Oluşturma ve Listeleme</h2>
     <div class="row mt-5">
-
       <label class="col-sm-2 col-form-label">İsim:</label>
       <div class="col-sm-30">
         <input type="text" required class="form-control" published="name" formControlName="name">
@@ -14,7 +13,7 @@
     </div>
     <div class="row mb-3">
       <label class="col-sm-2 col-form-label">Soyisim:</label>
-      <div class="col-sm-30">
+      <div class="col-sm-20">
         <input type="text" required class="form-control" published="surName" formControlName="surName">
         <div *ngIf="form.controls.surName.errors?.required"><span>Lütfen Soyisim giriniz</span></div>
       </div>
@@ -23,13 +22,14 @@
       </div>
     </div>
   </div>
-
+</div>
 </form>
 
 <div class="container">
   <div class="row mt-3">
-    <div class="col-6">
-      <button type="submit" class="btn btn-primary" (click)="hideBtn()">Kişileri Listele</button>
+    <div class="col-6 mx-auto">
+      <!-- <button type="submit" class="btn btn-primary" (click)="hideBtn()">Kişileri Listele</button> -->
+      <b><p>Kişi Listesi</p></b>
       <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()"></div>
       <!-- <div *ngIf="hidden"></div> -->
         <input type="text" class="form-control mb-4" placeholder="Search..." [(ngModel)]="query">
@@ -48,4 +48,3 @@
     </div>
   </div>
 </div>
-<button type="submit" class="btn btn-primary" (click)="yonlendir()">Diğer sayfaya yönlendir</button>

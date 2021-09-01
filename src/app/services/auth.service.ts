@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import firebase from 'firebase/app';
 import "firebase/auth";
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -76,10 +75,9 @@ export class AuthService {
     var name, email, address, uid, email, password;
 
     if (users != null) {
-      name = user.displayName;
+      name = user.name;
       email = user.email;
       address = user.address;
-      email = user.emailVerified;
       password = user.password;
       uid = user.uid;
     }

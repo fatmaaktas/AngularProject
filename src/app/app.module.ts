@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.component';
 import { TutorialDetailsComponent } from './components/tutorial-details/tutorial-details.component';
 import { TutorialsListComponent } from './components/tutorials-list/tutorials-list.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderByPipe } from './pipes/order-pipe';
 import { IsimFilterPipe } from './pipes/isim-filter.pipe';
@@ -18,6 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from './components/auth/auth.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { NgxMaskModule } from 'ngx-mask';
+import { NavbarComponent } from './navbar/navbar/navbar.component';
+
 
 
 @NgModule({
@@ -29,7 +32,8 @@ import { RegisterComponent } from './components/auth/register/register.component
     OrderByPipe,
     IsimFilterPipe,
     AuthComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent,
     
     
   ],
@@ -43,16 +47,18 @@ import { RegisterComponent } from './components/auth/register/register.component
     ReactiveFormsModule,
     FormsModule, 
     InfiniteScrollModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskModule.forRoot(),
   ],
 
   exports:[
     OrderByPipe,
     IsimFilterPipe,
-    InfiniteScrollModule
+    InfiniteScrollModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 platformBrowserDynamic().bootstrapModule(AppModule);
+

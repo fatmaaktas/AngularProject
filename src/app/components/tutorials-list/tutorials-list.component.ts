@@ -1,4 +1,4 @@
-import { Component, OnInit, Query } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { CommonService } from 'src/app/db/common.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -62,6 +62,8 @@ export class TutorialsListComponent implements OnInit {
       this.deger = !this.deger
       this.form.reset()
     }
+    this.updateRecord();
+    this.getListUrl();
   }
 
   saveRecord() {
@@ -72,6 +74,7 @@ export class TutorialsListComponent implements OnInit {
           name: this.form.value.name,
           surName: this.form.value.surName
         })
+        this.updateRecord();
   }
 
   updateRecord() {
@@ -85,12 +88,13 @@ export class TutorialsListComponent implements OnInit {
   }
 
 
-  hideBtn() {
-    this.hidden = !this.hidden
-  }
+  // hideBtn() {
+  //   this.hidden = !this.hidden
+  // }
 
   deleteRecord(key: any) {
-    this.commonSvc.removeData(`tutorials/${key}`)
+    this.commonSvc.removeData(`tutorials/${key}`),
+    this.getListUrl();
   }
 
   setRecord(name: any, surName: any, key: any) {
@@ -117,7 +121,4 @@ export class TutorialsListComponent implements OnInit {
     }
   }
 
-  yonlendir() {
-    this.router.navigate(['./addTutorial']);
-  }
 }

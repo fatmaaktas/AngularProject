@@ -1,14 +1,13 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit(form)" >
-    <div class="container" >
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+    <div class="container">
         <div class="row">
-            <div class="col-4 mx-auto mt-5" style="border: 2px  solid rgb(168, 54, 149);">
+            <div class="col-4 mx-auto mt-5 pt-3 pb-3" style="border: 2px  solid rgb(168, 54, 149);">
                 <div class=mb-5>
                     <div>
                         <div class="col-5 mx-auto">
                             <h4>Giriş Yap</h4>
                         </div>
                     </div>
-
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">E-mail</label>
@@ -19,8 +18,7 @@
                     <input type="password" required minlength="6" formControlName="password" class="form-control">
                 </div>
                 
-
-                <button type="submit" class="btn btn-primary" >Giriş</button>
+                <button type="submit" class="btn btn-primary">Giriş</button>
                 <button type="button" class="btn btn-primary mx-2" (click)="onToggleMode()">Kaydol</button>
             </div>
         </div>

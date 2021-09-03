@@ -1,1 +1,40 @@
-<p>tutorial-details works!</p>
+<!-- 
+    <div class="container">
+        <button type="submit" class="btn btn-primary" (click)="getProducts()">Products</button>
+        <div *ngFor="let p of products" class="row">
+            <div class="col" flex="100" alignItems="center">
+                <p>{{p.name}}</p>
+            </div>
+        </div> -->
+        <div class="container pt-100 mt-5">
+            <div class="row">
+                <div class="col-3">
+                    <div class="list-group">
+                        <a (click)="ayakkabi()" routerLink="/products" class="list-group-item list-group-item-action">Ayakkabı</a>
+                        <a href="" class="list-group-item list-group-item-action">Telefon</a>
+                        <a href="" class="list-group-item list-group-item-action">T-Shirt</a>
+                    
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="row">
+                        <ng-container *ngFor="let p of products">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h4 class="cart-tittle">
+                                        <a href="">
+                                            {{ p.name }}
+                                        </a>
+                                    </h4>
+                                        <small class="text-muted">
+                                            <i class="fas fa-lira-sign"></i> {{ p.price }}
+                                        </small>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+<!-- 
+        </div>
+    </div> -->

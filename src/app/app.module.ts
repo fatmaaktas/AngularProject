@@ -20,6 +20,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { NavbarComponent } from './navbar/navbar/navbar.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 
 
@@ -34,6 +36,8 @@ import { NavbarComponent } from './navbar/navbar/navbar.component';
     AuthComponent,
     RegisterComponent,
     NavbarComponent,
+    ProductComponent,
+    ProductDetailComponent,
     
     
   ],

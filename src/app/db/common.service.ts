@@ -90,11 +90,22 @@ export class CommonService {
   /**
    * @param  {string} path
    */
-  getData(path: string) {
+  getData(path: string, renk: any) {
 
-    return this.db.object(`${path}`).valueChanges().first()
+    return this.db.object(`${path}/${renk}`).valueChanges().first()
 
   }
+
+  /**
+  * @param  {string} path
+  */
+  getDataId(path: string, key: any) {
+
+    return this.db.object(`${path}/${key}`).valueChanges().first()
+
+  }
+
+
   /**
    * @param  {string} path
    */
@@ -166,8 +177,8 @@ export class CommonService {
       .then(snapshot => snapshot.exists());
   }
 
-  
-  getListUrl(sindex:any, lastKey:any) {
+
+  getListUrl(sindex: any, lastKey: any) {
     return this.db.list(`tutorials`, ref =>
       ref.orderByKey()
         .startAt(lastKey)
@@ -180,8 +191,8 @@ export class CommonService {
       })
   }
 
-  getCategories(parent:string) {
-    return this.db.list(`categories`, ref =>
+  getCategories(parent: string) {
+    return this.db.list(`products`, ref =>
       ref.orderByChild('parent').equalTo(parent))
       .snapshotChanges().map(changes => {
         return changes.map((c: any) => ({
@@ -189,4 +200,21 @@ export class CommonService {
         }))
       })
   }
+
+
+  
+  getProductVariantsName(path: string) {
+    console.log(Date.now().valueOf());
+    
+    return this.db.list(`${path}`)
+      .snapshotChanges()
+      .map(changes => {
+        return changes
+          .map((c: any) => ({
+            name: c.payload.val()['dimension']['name']
+          }))
+      }).first()
+  }
+  
 }
+

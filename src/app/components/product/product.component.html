@@ -1,0 +1,20 @@
+<div class="container pt-100 mt-5">
+        <div class="col-9">
+            <div class="row">
+                <ng-container *ngFor="let p of products">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h4 class="cart-tittle">
+                                <a routerLink = "/products/detail/{{p.key}}">
+                                    {{ p.name }}
+                                </a>
+                            </h4>
+                                <small class="text-muted">
+                                    <i class="fas fa-lira-sign"></i> {{ p.price }}
+                                </small>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>

@@ -93,8 +93,7 @@ export class TutorialsListComponent implements OnInit {
   // }
 
   deleteRecord(key: any) {
-    this.commonSvc.removeData(`tutorials/${key}`),
-    this.getListUrl();
+    this.commonSvc.removeData(`tutorials/${key}`)
   }
 
   setRecord(name: any, surName: any, key: any) {

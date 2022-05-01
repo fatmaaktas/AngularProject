@@ -10,7 +10,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 <img src="https://user-images.githubusercontent.com/49655751/155339307-62e5709b-87d4-480e-b9fb-3f8a2b467aff.png">
 </p>
 
-Technologyies;
 
 ## Development server
 ```sh
